@@ -16,5 +16,3 @@ jobs:
       - name: Publish project
         run: dotnet publish -c release src/Presentation/Nop.Web/Nop.Web.csproj -o develop
  
- 
- 
