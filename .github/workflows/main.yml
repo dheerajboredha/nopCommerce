@@ -28,3 +28,23 @@ jobs:
               mysonar_url: https://sonarcloud.io
       - name: Publish project
         run: dotnet publish -c release src/Presentation/Nop.Web/Nop.Web.csproj -o dheeraj
+      # AWS CONFIGURE
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v4
+        with: 
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-seceret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: ap-south-1
+      - name: Login to amazon ecr
+        id: login-ecr
+        uses: aws-actions/amazon-ecr-login@v2
+        # build and push docker image
+      - name: Build Docker image
+        env:
+          ECR_REGISTRY: aws ecr get-login-password --region ap-south-1 | docker login --username AWS --password-stdin 542833615945.dkr.ecr.ap-south-1.amazonaws.com
+          ECR_REPOSITORY: ecr/nopcommerce
+          IMAGE_TAG: latest
+        run: |
+          docker build -t ecr/nopcommerce .
+          docker tag ecr/nopcommerce:latest 542833615945.dkr.ecr.ap-south-1.amazonaws.com/ecr/nopcommerce:latest
+          docker push 542833615945.dkr.ecr.ap-south-1.amazonaws.com/ecr/nopcommerce:latest
