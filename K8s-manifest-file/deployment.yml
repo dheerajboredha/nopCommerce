@@ -24,7 +24,7 @@ spec:
     spec:
       containers:
       - name: dotnet-con
-        image: 542833615945.dkr.ecr.ap-south-1.amazonaws.com/ecr/nopcommerce
+        image: 542833615945.dkr.ecr.ap-south-1.amazonaws.com/dotnet/nop
         ports:
         - containerPort: 5000
           protocol: TCP
