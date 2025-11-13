@@ -64,9 +64,9 @@ spec:
         # ✅ Resource tuning for t2.medium (2 vCPU, 4GB)
         resources:
           requests:
-            cpu: "800m"
-            memory: "1500Mi"
+            cpu: "400m"
+            memory: "800Mi"
           limits:
-            cpu: "1800m"
-            memory: "1800Mi"
+            cpu: "900m"
+            memory: "900Mi"
 
